@@ -33,6 +33,7 @@ Cypress.Commands.add('selectRandomProduct', () => {
   });
 import 'cypress-iframe';
 
+
 Cypress.Commands.add('enterCrossDomainIframe', { prevSubject: 'element' }, (iframe) => {
   cy.wrap(iframe)
     .iframe()

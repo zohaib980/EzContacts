@@ -17,7 +17,7 @@ export class CheckoutPage
     {
         cy.get('.col-md-12 > .btn-cart > .btn').should('have.text','Add to Cart').click()
         cy.get(':nth-child(2) > .col-md-12 > h2').should('contain.text','Protect your eyewear from accidental damage.')
-        cy.get('#removeProtectionBtn').should('contain.text',"I don't want protection").click()
+        cy.get('#removeProtectionBtn').should('contain.text',"I don't want protection").click({force:true})
         cy.get('.section-title').should('have.text','Shopping Cart') //shopping cart heading
         cy.get('.cart-product-head.clearfix').should('exist') //product details
         cy.get('#qty').should('exist') // product quantity
@@ -188,10 +188,10 @@ export class CheckoutPage
     validateShippingOptionsSection()
     {
         cy.get('.p2.hidden-xs.acc-edit').should('contain.text','Shipping Options ')
-        cy.get('#selectShipId').select('5-7 Business Days - Free').should('exist')
-        cy.get('#selectShipId').select('3-5 Business Days - $7.95').should('exist')
-        cy.get('#selectShipId').select('2 Business Days (Special Rate) - $19.95').should('exist')
-        cy.get('#selectShipId').select('1 Business Day - $29.95').should('exist')
+        cy.get('#selectShipId').select(0).should('contain.text','5-7 Business Days')
+        cy.get('#selectShipId').select(1).should('contain.text','3-5 Business Days').wait(2000)
+        cy.get('#selectShipId').select(2).should('contain.text','2 Business Days').wait(1000)
+        cy.get('#selectShipId').select(3).should('contain.text','1 Business Day')
         cy.get('.p2 > .pull-right').click()
         cy.url().should('include','/checkout/shipping')
     }

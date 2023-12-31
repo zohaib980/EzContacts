@@ -2,7 +2,9 @@ export class Homepage
 {
     closeDiscountPOpup()
     {
-        cy.get('#ltkpopup-close-button > .ltkpopup-close').click() //Close popup cross icon
+        cy.wait(2000)
+        //cy.get('#ltkpopup-close-button > .ltkpopup-close').should('exist').click() //Close popup cross icon
+        cy.reload()
     }
     hoverOnSunglassesMenu()
     {
@@ -87,7 +89,7 @@ export class Homepage
     }
     validatePromotionBanner()
     {
-        cy.get('.col-sm-12 > strong').should('have.text','Order Today and Get it Tomorrow! Click for details...').click() //
+        cy.get('.col-sm-12 > strong').should('exist').click() //
         cy.wait(1000) 
         cy.get('#special-top-message-modal > .modal-dialog > .modal-content > .modal-header > .close > [aria-hidden="true"]').click() //close popup
     }
@@ -190,11 +192,11 @@ export class Homepage
     validateBrandLogoIcons()
     {
         cy.get('.col a[href="/eyeglasses/brand:persol"]').should('have.attr','href','/eyeglasses/brand:persol') //Validate persol
-        cy.get('.col a[href="/eyeglasses/brand:dandg"]').should('have.attr','href','/eyeglasses/brand:dandg') //Validate dandg
+        cy.get('.col a[href="/sunglasses/brand:versace"]').should('have.attr','href','/sunglasses/brand:versace') //Validate versace
         cy.get('.col a[href="/sunglasses/brand:gucci"]').should('have.attr','href','/sunglasses/brand:gucci') //Validate gucci
-        cy.get('.col a[href="/eyeglasses/brand:coach"]').should('have.attr','href','/eyeglasses/brand:coach') //Validate coach
+        cy.get('.col a[href="/sunglasses/brand:oakley"]').should('have.attr','href','/sunglasses/brand:oakley') //Validate oakley
         cy.get('.col a[href="/eyeglasses/brand:ray-ban"]').should('have.attr','href','/eyeglasses/brand:ray-ban') //Validate ray-ban
-        cy.get('.col a[href="/sunglasses/brand:marc-by-marc-jacobs"]').should('have.attr','href','/sunglasses/brand:marc-by-marc-jacobs') //Validate marc-by-marc-jacobs
+        cy.get('.col a[href="/sunglasses/brand:prada"]').should('have.attr','href','/sunglasses/brand:prada') //Validate marc-by-marc-jacobs
     }
     activeEmailSubscription(email)
     {

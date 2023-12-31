@@ -6,7 +6,7 @@ export class ContactLensesProductDetail
         cy.get('#UserEmail').type('testqatester81@gmail.com')
         cy.get('#new-password').type('123456')
         cy.get('#sign-in-submit-btn').should('have.value','Sign in').click()
-        cy.get(':nth-child(17) > .dropdown-toggle').click()
+        cy.get(':nth-child(16) > .dropdown-toggle').click()
     }
     goToAddReview()
     {
@@ -69,6 +69,60 @@ export class ContactLensesProductDetail
         cy.get('.mar-top-0 > a').should('contain.text','Contact Us Here')
         cy.get(':nth-child(3) > .no-margin-top').should('exist')
     }
+    addtocartwithSameprescription(){
+        
+        cy.get('.price-block > .curr-price').then((element)=>{
+            const ele = element.text()
+            var elem = ele.split("$") 
+            const price = elem[1].trim() //get the price
+            cy.log(price)
+            cy.get('input[name="same_prescription"]').click({force:true})//click on same prescription of both lenses
+            cy.get('#AppProductRightPower').select('+1.00')
+            cy.get('select[name="data[AppProduct][right_bc]"]').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductRightCyl').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductRightAxis').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductRightColor').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.get('Dropdown is not exist ')
+                }
+            })
+            cy.get('#same-prescription-how-many').select('1')
+            cy.get('.pull-right > #addtocart').should('contain.text','Add to cart').click().wait(2000)
+            cy.get('.confirmIsPlusPower').should('contain.text','Yes, it’s Correct').click()
+            cy.get("div[class='message success success-msg']").should('contain','Item successfully added to your cart')
+            cy.get('.col-md-3 > .cart-table > tbody > :nth-child(2) > :nth-child(2)').then((element1)=>{
+                const ele1 = element1.text()
+                var elem1 = ele1.split("$") 
+                const price1 = elem1[1].trim() //get the price
+                cy.log(price1)  
+                expect(Number(price1)).be.equal(Number(price)) //Validate that total is updated after applying promo
+            })
+        })
+    }
     addAProductToCartAndValidate()
     {
         cy.get('.price-block > .curr-price').then((element)=>{
@@ -77,12 +131,76 @@ export class ContactLensesProductDetail
             const price = elem[1].trim() //get the price
             cy.log(price)
             cy.get('#AppProductRightPower').select('+1.00')
+            cy.get('select[name="data[AppProduct][right_bc]"]').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductRightCyl').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductRightAxis').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductRightColor').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.get('Dropdown is not exist ')
+                }
+            })
             cy.get('#AppProductRightHowMany').select('1')
             cy.get('#AppProductLeftPower').select('+1.00')
+            cy.get('select[name="data[AppProduct][left_bc]"]').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductLeftCyl').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductLeftAxis').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown is not exist')
+                }
+            })
+            cy.get('#AppProductLeftColor').if().should('exist').then((element)=>{
+                if(element.length>0){
+                    cy.get(element).select(1)
+                }
+                else{
+                    cy.log('Dropdown doest not exist')
+                }
+            })
             cy.get('#AppProductLeftHowMany').select('1')
-            cy.get('.pull-right > #addtocart').should('contain.text','Add to cart').click()
+            cy.get('.pull-right > #addtocart').should('contain.text','Add to cart').click().wait(2000)
             cy.get('.confirmIsPlusPower').should('contain.text','Yes, it’s Correct').click()
-            cy.get('.content > .container > :nth-child(1)').should('contain.text','Item successfully added to your cart.')
+            cy.get("div[class='message success success-msg']").should('contain','Item successfully added to your cart')
             cy.get('.col-md-3 > .cart-table > tbody > :nth-child(2) > :nth-child(2)').then((element1)=>{
                 const ele1 = element1.text()
                 var elem1 = ele1.split("$") 
@@ -90,7 +208,7 @@ export class ContactLensesProductDetail
                 cy.log(price1)  
                 expect(Number(price1)).be.equal(Number(price)) //Validate that total is updated after applying promo
             })    
-        })
+       })
     }
     removeAProductFromCart()
     {

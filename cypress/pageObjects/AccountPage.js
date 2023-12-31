@@ -3,7 +3,7 @@ export class AccountPage
 validateSigninPageContent()
 {
     cy.get('.section-title').should('contain.text','Sign in') //Validate Sign in heading
-    cy.get('#UserEmail').should('exist') //email field
+    cy.get('#UserEmail').should('exist') //email field validate
     cy.get('.b').should('contain.text','Are you a new or returning customer?') //validate heading
     cy.get(':nth-child(5) > :nth-child(2) > label').should('contain.text','Returning Customer') //Returning Customer text
     cy.get(':nth-child(5) > :nth-child(4) > label').should('contain.text','New Customer') //New Customer text
@@ -37,12 +37,8 @@ validateOrder()
                 cy.get('.Button.locator_button.customizable').should('have.text','Locate Order').click() //Locate Order button
                 cy.wait(3000)
                 cy.get('.error.customizable').should('contain.text','Order not found')
-            
             })
-
-           
           });
-
     }
 
     validateAccountSettingTab()
@@ -198,7 +194,7 @@ validateOrder()
         cy.get('.dropdown a[href="/sunglasses"]').should('have.text','SUNGLASSES').click() //go to SUNGLASSES catalog
         cy.get('#ltkpopup-close-button > .ltkpopup-close').should('exist').click() //close popup
         const randomProduct = Math.floor(Math.random() * 24); //generate a random number 1-24
-        cy.get('.glass-mask').eq(randomProduct).click(); //click on a product randomly
+        cy.get('.glass-mask').eq(randomProduct).click() //click on a product randomly
         cy.get('.add-to-wishlist-btn').should('exist').click() //click add to wish list
         cy.wait(2000) 
         

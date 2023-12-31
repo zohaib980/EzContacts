@@ -18,7 +18,7 @@ export class EyeCareProductDetail
         cy.get('.tt-c-review-form__overall-rating > .tt-c-rating > :nth-child(4)').click()
         cy.get('#tt-review-form-text').type('Very Good Experience')
         cy.get('#tt-review-form-title').type('Sunglasses')  
-        cy.get('.tt-c-review-form__actions > .tt-o-button').click()
+        cy.get('.tt-c-review-form__actions > .tt-o-button--primary').click()
         cy.wait(3000)
         cy.get('.tt-o-text-field').eq(0).type('john')
         cy.get('.tt-o-text-field').eq(1).type('doe')
