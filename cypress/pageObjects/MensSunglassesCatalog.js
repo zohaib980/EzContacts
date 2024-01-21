@@ -49,7 +49,7 @@ export class MensSunglassesCatalog
     }
     applyBrandFilters()
     {
-        const random  = reuseableCode.getRandomNumber(1,105) 
+        const random  = reuseableCode.getRandomNumber(1,104) 
       cy.get('[class="has-pretty-child"][unbxdparam_facetname="brand_uFilter"]').eq(random).click() //Click on random brand
       cy.wait(3000)
       cy.get('[class="clear_all_selected_facets"]').should('contain.text','Reset All Filters').click() //clear Reset All Filters
@@ -87,25 +87,25 @@ export class MensSunglassesCatalog
     }
     applyFrameShapeFilter()
     {
-        const randomNumber  = reuseableCode.getRandomNumber(1,14) //Generate a random number 1-14
+        const randomNumber  = reuseableCode.getRandomNumber(0,13) //Generate a random number 1-14
       cy.get('input[unbxdparam_facetname="frame_shape_uFilter"]').eq(randomNumber).should('exist').click({force: true})
       cy.get('.filter-tags [unbxdparam_facetname="frame_shape_uFilter"]').should('exist') //Validate Filter tag
     }
     applyFrameMaterialFilter()
     {
-        const randomNumber  = reuseableCode.getRandomNumber(1,13) //Generate a random number 1-13
+        const randomNumber  = reuseableCode.getRandomNumber(0,7) //Generate a random number 1-13
       cy.get('input[unbxdparam_facetname="frame_material_uFilter"]').eq(randomNumber).should('exist').click({force: true})
       cy.get('.filter-tags [unbxdparam_facetname="frame_material_uFilter"]').should('exist') //Validate Filter tag
     }
     applyReviewFilter()
     {
-        const randomNumber  = reuseableCode.getRandomNumber(1,4) //Generate a random number 1-4
+        const randomNumber  = reuseableCode.getRandomNumber(0,3) //Generate a random number 1-4
       cy.get('input[unbxdparam_facetname="unbxd_rating_average_uFilter"]').eq(randomNumber).should('exist').click({force: true})
       cy.get('.filter-tags [unbxdparam_facetname="unbxd_rating_average_uFilter"]').should('exist') //Validate Filter tag
     }
     applyPriceFilter()
     {
-        const randomNumber  = reuseableCode.getRandomNumber(1,10) //Generate a random number 1-10
+        const randomNumber  = reuseableCode.getRandomNumber(0,9) //Generate a random number 1-10
       cy.get('input[unbxdparam_facetname="v_price"]').eq(randomNumber).should('exist').click({force: true})
       cy.get('.filter-tags [unbxdparam_facetname="v_price"]').should('exist') //Validate Filter tag
     }
@@ -119,7 +119,7 @@ export class MensSunglassesCatalog
     }
     selectRandomSortingOption()
     {
-        const randomNumber  = reuseableCode.getRandomNumber(1,6) //Generate a random number 1-6
+        const randomNumber  = reuseableCode.getRandomNumber(0,5) //Generate a random number 1-6
         cy.get('.unbxd-sort-container select').should('exist').select(randomNumber) 
     }
     showTotalProducts()

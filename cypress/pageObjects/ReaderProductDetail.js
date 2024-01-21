@@ -1,13 +1,6 @@
 export class ReaderProductDetail
 {
-    addLoginDetails()
-    {
-        cy.visit('https://www.ezcontacts.com/account/sign-in')
-        cy.get('#UserEmail').type('testqatester81@gmail.com')
-        cy.get('#new-password').type('123456')
-        cy.get('#sign-in-submit-btn').should('have.value','Sign in').click()
-        cy.get(':nth-child(17) > .dropdown-toggle').click()
-    }
+   
     goToAddReview()
     {
         cy.get('#reviews').should('contain.text','RATINGS & REVIEWS')
@@ -41,13 +34,25 @@ export class ReaderProductDetail
     }
     addAProductToWishList()
     {
-        cy.get('.add-to-wishlist-btn').click()
-        cy.get('.top-login > [href="/account/main"]').click()
-        cy.get('.section.m-off > .account-box > .account-left-col > .nav > :nth-child(7) > a').should('have.attr','href','/account/wishlist').click()
-        cy.get('.mini-order').should('exist')
-        cy.go('back')
-        cy.go('back')
-        cy.get('.add-to-wishlist-btn').click()
+        cy.get('a.fa-heart-o').if().should('exist').click().wait(1000) //Whishlist icon
+        cy.get('h2[class="product-name"]').eq(1).invoke('text').then((text)=>{
+            cy.get('.top-login > [href="/account/main"]').click() //MyAccount link
+            cy.get('.section.m-off > .account-box > .account-left-col > .nav > :nth-child(7) > a').should('have.attr','href','/account/wishlist').click() //Whishlist section
+            cy.wait(1000)
+            //cy.get('[class="item-order-right"]').eq(0).should('contain.text',text)
+            cy.get('[class="item-order-right"]').eq(0).should(($element) => {
+                const actualText = $element.text().toLowerCase();
+                const expectedText = text.toLowerCase().trim();
+                expect(actualText).to.include(expectedText+'\n');
+              });
+            cy.log(text+' item added to the wishlist!')
+        })
+    }
+    removeProductFromWishlist()
+    {
+        cy.get('.remove-product').should('contain.text','Remove').eq(0).click() //Remove link
+        cy.get('#modal_remove_button').click().wait(2000) //confirm on popup
+        cy.log('Item removed from the wishlist!')
     }
     validateAllContentOnProductDetailPage()
     {

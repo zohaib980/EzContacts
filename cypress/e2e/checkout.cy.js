@@ -7,7 +7,7 @@ import { CheckoutPage } from "../pageObjects/CheckoutPage"
 const homepage = new Homepage
 const checkout = new CheckoutPage
 
-describe('CheckoutPage TS_004',function(){
+describe('TS_004 - CheckoutPage',function(){
     beforeEach(() => {
         cy.visit('/')
         homepage.closeDiscountPOpup()
@@ -137,7 +137,7 @@ describe('CheckoutPage TS_004',function(){
         checkout.addPaymentInfo() 
     })
 
-    it ('TC_CK_019 - Verify that when the user deletes the product from the cart the protection should also get deleted. ',function(){
+    it('TC_CK_019 - Verify that when the user deletes the product from the cart the protection should also get deleted. ',function(){
         checkout.goToSunglassesCatalog() //add a Sunglasses product from catalog
         checkout.addAProductToCartWithProtection() //add A Product To Cart With Protection
         checkout.clickOnRemoveItemButton() 

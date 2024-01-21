@@ -4,7 +4,7 @@ const reuse = new ReuseableCode
 export class ContactLensesCatlog {
 
     applyBrandFilters() {
-        const random = reuse.getRandomNumber(0, 20)
+        const random = reuse.getRandomNumber(0, 19)
         cy.get('[class="has-pretty-child"][unbxdparam_facetname="brand_uFilter"]').eq(random).click() //Click on random brand
         cy.wait(3000)
         cy.get('[class="clear_all_selected_facets"]').should('contain.text', 'Reset All Filters').click() //clear Reset All Filters
@@ -13,7 +13,7 @@ export class ContactLensesCatlog {
         cy.wait(2000)
     }
     applyManufacturersFilter() {
-        const random = reuse.getRandomNumber(0, 7)
+        const random = reuse.getRandomNumber(0, 5)
         cy.get('[class="has-pretty-child"] input[unbxdparam_facetname="contact_lens_manufacturer_uFilter"]').eq(random).click()
         cy.wait(2000)
         cy.get('[class="clear_all_selected_facets"]').should('contain.text', 'Reset All Filters').click() //clear Reset All Filters
@@ -22,7 +22,7 @@ export class ContactLensesCatlog {
         cy.wait(2000)
     }
     applyContactLensScheduleFilter() {
-        const random = reuse.getRandomNumber(0, 3)
+        const random = reuse.getRandomNumber(0, 2)
         cy.get('input[unbxdparam_facetname="contact_lens_schedule_uFilter"]').eq(random).click()
         cy.wait(3000)
         cy.get('[class="clear_all_selected_facets"]').should('contain.text', 'Reset All Filters').click() //clear Reset All Filters
@@ -30,7 +30,7 @@ export class ContactLensesCatlog {
         cy.get('input[unbxdparam_facetname="contact_lens_schedule_uFilter"]').eq(random).click()
     }
     applyContactLensTypesFilter() {
-        const random = reuse.getRandomNumber(0, 4)
+        const random = reuse.getRandomNumber(0, 3)
         cy.get('input[unbxdparam_facetname="contact_lens_type_uFilter"]').eq(random).click()
         cy.wait(2000)
         cy.get('[class="clear_all_selected_facets"]').should('contain.text', 'Reset All Filters').click() //clear Reset All Filters
@@ -39,7 +39,7 @@ export class ContactLensesCatlog {
         cy.wait(2000)
     }
     applyBasecorvFilter() {
-        const random = reuse.getRandomNumber(0, 11)
+        const random = reuse.getRandomNumber(0, 10)
         cy.get('input[unbxdparam_facetname="supported_bc_uFilter"]').eq(random).click()
         cy.wait(3000)
         cy.get('[class="clear_all_selected_facets"]').should('contain.text', 'Reset All Filters').click() //clear Reset All Filters
@@ -48,7 +48,7 @@ export class ContactLensesCatlog {
 
     }
     applyDiameterFilter() {
-        const random = reuse.getRandomNumber(0, 7)
+        const random = reuse.getRandomNumber(0, 6)
         cy.get('input[unbxdparam_facetname="supported_dia_uFilter"]').eq(random).click()
         cy.wait(2000)
         cy.get('[class="clear_all_selected_facets"]').should('contain.text', 'Reset All Filters').click() //clear Reset All Filters
@@ -78,7 +78,7 @@ export class ContactLensesCatlog {
 
     }
     selectRandomSortingOption() {
-        const randomNumber = reuse.getRandomNumber(1, 6) //Generate a random number 1-6
+        const randomNumber = reuse.getRandomNumber(0, 5) //Generate a random number 1-6
         cy.get('.unbxd-sort-container select').should('exist').select(randomNumber)
     }
     showTotalProducts() {

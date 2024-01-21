@@ -1,13 +1,5 @@
 export class ContactLensesProductDetail
 {
-    addLoginDetails()
-    {
-        cy.visit('https://www.ezcontacts.com/account/sign-in')
-        cy.get('#UserEmail').type('testqatester81@gmail.com')
-        cy.get('#new-password').type('123456')
-        cy.get('#sign-in-submit-btn').should('have.value','Sign in').click()
-        cy.get(':nth-child(16) > .dropdown-toggle').click()
-    }
     goToAddReview()
     {
         cy.get('#reviews').should('contain.text','RATINGS & REVIEWS')

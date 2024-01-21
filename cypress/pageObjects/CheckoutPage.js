@@ -10,12 +10,12 @@ export class CheckoutPage
     }
     goToSunglassesCatalog()
     {
-        cy.get(':nth-child(13) > .dropdown-toggle').should('have.attr','href','/sunglasses').click() //menu
-        cy.get('#prd-1 > .mask-wrap > :nth-child(2) > .glass-mask').eq(0).click() //first product
+        cy.get(':nth-child(13) > .dropdown-toggle').should('have.attr','href','/sunglasses').click({force:true}) //menu
+        cy.get('#prd-1 > .mask-wrap > :nth-child(2) > .glass-mask').eq(0).click({force:true}) //first product
     }
     addAProductToCartWithoutProtection()
     {
-        cy.get('.col-md-12 > .btn-cart > .btn').should('have.text','Add to Cart').click()
+        cy.get('.col-md-12 > .btn-cart > .btn').should('have.text','Add to Cart').click({force:true})
         cy.get(':nth-child(2) > .col-md-12 > h2').should('contain.text','Protect your eyewear from accidental damage.')
         cy.get('#removeProtectionBtn').should('contain.text',"I don't want protection").click({force:true})
         cy.get('.section-title').should('have.text','Shopping Cart') //shopping cart heading
@@ -52,7 +52,7 @@ export class CheckoutPage
     }
     clickOnRemoveItemButton()
     {
-        cy.get('.jsRemoveCartProduct').eq(0).click() //remove item button
+        cy.get('.jsRemoveCartProduct').eq(0).click({force:true}) //remove item button
         cy.get('.success').should('contain.text','Item successfully removed from your cart!')
         cy.get('.items').should('contain.text','CART EMPTY')
     }
@@ -168,7 +168,7 @@ export class CheckoutPage
         cy.get('#AccountShippingAddressUsAddressRegion').select('New York')
         cy.get('#AccountShippingAddressAddressPostalZip').type('10006')
         cy.get('#AccountShippingAddressAddressShipPhonePrimary').type('+155566688889')
-        cy.get('#add-shipping-address').should('have.value','Continue').click()
+        cy.get('#add-shipping-address').should('have.value','Continue').click({force:true})
     }
     validateAllContentOnShippingAndPaymentPage()
     {
@@ -214,18 +214,19 @@ export class CheckoutPage
     }
     addAProductToCartWithProtection()
     {
-        cy.get('.col-md-12 > .btn-cart > .btn').should('have.text','Add to Cart').click()
+        cy.get('.col-md-12 > .btn-cart > .btn').should('have.text','Add to Cart').click({force:true})
+        cy.wait(3000)
         cy.get(':nth-child(2) > .col-md-12 > h2').should('contain.text','Protect your eyewear from accidental damage.')
-        cy.get('#addProtectionBtn').should('contain.text','Protect my purchase').click()
+        cy.get('#addProtectionBtn').should('contain.text','Protect my purchase').click({force:true})
         cy.get('.section-title').should('have.text','Shopping Cart') //shopping cart heading
         cy.get(':nth-child(8) > .cart-product-head').should('contain.text','Extend Protection Plan with Accident Coverage')
     }
     goToCheckoutAsAGuest()
     {
-        cy.get('[data-value="1"]').should('contain.text','Checkout As Guest').click()
+        cy.get('[data-value="1"]').should('contain.text','Checkout As Guest').click({force:true})
         cy.url().should('include','/checkout/sign-in')
         cy.get('#UserEmail').type('mysms33@gmail.com')
-        cy.get('#checkout-sign-in-submit-btn').click()
+        cy.get('#checkout-sign-in-submit-btn').click({force:true})
     }
     addPaymentInfo()
     {
@@ -233,7 +234,7 @@ export class CheckoutPage
         cy.get('#AppProductExpiryMonth').select('02')
         cy.get('#AppProductExpiryYear').select('26')
         cy.get('#AppProductCvc').type('568')
-        cy.get('#add-billing-address').click()
+        cy.get('#add-billing-address').click({force:true})
         cy.get('#jsShowErrorModalText').should('contain.text','Merchant does not accept this card, try a different card.')
     }
     validateReviewsSection()

@@ -1,12 +1,12 @@
 /// <reference types = "Cypress"/>
 
-import{ Homepage } from "../pageObjects/Homepage"
+import { Homepage } from "../pageObjects/Homepage"
 import { ReuseableCode } from "../support/ReuseableCode"
 
 const homepage = new Homepage
 const reuseableCode = new ReuseableCode
 
-describe('HomePage TS_002', function(){
+describe('TS_002 - HomePage', function(){
     beforeEach(()=>{
         cy.visit('/')
         homepage.closeDiscountPOpup()
@@ -126,7 +126,7 @@ describe('HomePage TS_002', function(){
         homepage.validateSocialIconsInFooter() //Validate Social Icons
     })
 
-    it ('TC_HP_023 - Validate the copyright claim info in footer section', function(){
+    it('TC_HP_023 - Validate the copyright claim info in footer section', function(){
         homepage.validateCopyRight() //Validate copyright info
     })
 })

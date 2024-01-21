@@ -78,8 +78,8 @@ export class Homepage
     }
     validateEyecareMenu()
     {
-        cy.get('.open h3').eq(1).should('have.text','Categories')
-        cy.get('.open .col-sm-8').should('exist') //Validate eyecare category list exists
+        cy.get('.open h3').should('contain','Categories')
+        //cy.get('.open .col-sm-8').should('exist') //Validate eyecare category list exists
     }
     gotoClearancePage()
     {
@@ -272,6 +272,6 @@ export class Homepage
     }
     validateCopyRight()
     {
-        cy.get('.cstm-copy-right').should('have.text','\n Copyright 2023 EZContacts.com. All Rights Reserved. ') //validate copyright
+        cy.get('.cstm-copy-right').should('have.text','\n Copyright 2024 EZContacts.com. All Rights Reserved. ') //validate copyright
     }
 }

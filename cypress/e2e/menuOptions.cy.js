@@ -6,7 +6,7 @@ import { Homepage } from "../pageObjects/Homepage"
 const menuOptions = new MenuOptions
 const homepage = new Homepage
 
-describe('MenuOptions TS_005 ',function(){
+describe('TS_005 - MenuOptions',function(){
     beforeEach(()=>{
         cy.visit('/')
         homepage.closeDiscountPOpup()

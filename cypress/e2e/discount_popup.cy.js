@@ -6,7 +6,7 @@ import { ReuseableCode } from "../support/ReuseableCode"
 const discount_popup = new DiscountPopup();
 const reuseableCode = new ReuseableCode();
 
-describe('discount_popup TS_001', () => {
+describe('TS_001 - discount_popup', () => {
 
   let data
   before(function () {

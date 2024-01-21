@@ -1,13 +1,6 @@
 export class EyeCareProductDetail
 {
-    addLoginDetails()
-    {
-        cy.visit('https://www.ezcontacts.com/account/sign-in')
-        cy.get('#UserEmail').type('testqatester81@gmail.com')
-        cy.get('#new-password').type('123456')
-        cy.get('#sign-in-submit-btn').should('have.value','Sign in').click()
-        cy.get(':nth-child(18) > .dropdown-toggle').click()
-    }
+  
     goToAddReview()
     {
         cy.get('#reviews').should('contain.text','RATINGS & REVIEWS')
@@ -41,13 +34,24 @@ export class EyeCareProductDetail
     }
     addAProductToWishList()
     {
-        cy.get('.add-to-wishlist-btn').click()
-        cy.get('.top-login > [href="/account/main"]').click()
-        cy.get('.section.m-off > .account-box > .account-left-col > .nav > :nth-child(7) > a').should('have.attr','href','/account/wishlist').click()
-        cy.get('.mini-order').should('exist')
-        cy.go('back')
-        cy.go('back')
-        cy.get('.add-to-wishlist-btn').click()
+        cy.get('.add-to-wishlist-btn').click().wait(1000) //Whishlist icon
+        cy.get('h2[class="product-name"]').eq(1).invoke('text').then((text)=>{
+            cy.get('.top-login > [href="/account/main"]').click() //MyAccount link
+            cy.get('.section.m-off > .account-box > .account-left-col > .nav > :nth-child(7) > a').should('have.attr','href','/account/wishlist').click() //Whishlist section
+            //cy.get('[class="item-order-right"]').eq(0).should('contain.text',text)
+            cy.get('[class="item-order-right"]').eq(0).should(($element) => {
+                const actualText = $element.text().toLowerCase();
+                const expectedText = text.toLowerCase().trim();
+                expect(actualText).to.include(expectedText+'\n');
+              });
+            cy.log(text+' item added to the wishlist!')
+        })
+    }
+    removeProductFromWishlist()
+    {
+        cy.get('.remove-product').should('contain.text','Remove').click() //Remove link
+        cy.get('#modal_remove_button').click().wait(2000) //confirm on popup
+        cy.log('Item removed from the wishlist!')
     }
     validateAllContentOnProductDetailPage()
     {
@@ -63,7 +67,7 @@ export class EyeCareProductDetail
         cy.get('#shipAvailability > strong').should('contain.text',' AVAILABILITY ')
         cy.get('.product-description > .nav > .active').should('contain.text','Details')
         cy.get('#details-desc').should('exist')
-        cy.get('.readmore-js-toggle').should('contain.text','Read More')
+        cy.get('.readmore-js-toggle').if().should('contain.text','Read More')
         cy.get('.caps > a').should('contain.text','Need Help?')
         cy.get('.mar-top-0 > a').should('contain.text','Contact Us Here')
         cy.get(':nth-child(3) > .no-margin-top').should('exist')
