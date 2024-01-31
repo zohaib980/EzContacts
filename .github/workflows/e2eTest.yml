@@ -27,8 +27,9 @@ jobs:
         with:
           browser: chrome
           headed: true
-          spec: |
-             cypress/e2e/completeTestSenerio.cy.js
+          spec: cypress/e2e/completeTestSenerio.cy.js
+          # If you want to run Paralar for all the files and folders please use
+          # spec:|
             # cypress/e2e/*.cy.js
             # cypress/e2e/ProductCatalogs/*.cy.js
             # cypress/e2e/ProductDetailPages/*.cy.js
@@ -64,7 +65,7 @@ jobs:
           # Required mail subject:
           subject: Daily Test Run Report
           # Required recipients' addresses:
-          to: qatesthub00@gmail.com
+          to: zohaibchaudhry94@gmail.com
           # Required sender full name (address can be skipped):
           from: Alpha Automation ${{github.run_id}} # <user@example.com>
           # Optional plain body:
